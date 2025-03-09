@@ -1,0 +1,172 @@
+body {
+    margin-top: 50px;
+    font-family: sans-serif;
+}
+
+/* 1 Задача Collapse */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.collapsible-header {
+    display: flex;
+}
+
+.collapsible {
+    display: flex;
+    flex-direction: column; 
+    max-width: 250px;
+}
+
+.collapsible-btn {
+    font-size: 30px;
+    background-color: rgb(102, 102, 238);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.collapsible-btn:hover {
+    cursor: pointer;
+    background-color: blue;
+}
+
+.collapsible-content {
+    font-size: 30px;
+    margin-right: 15px;
+    display: block;
+    overflow: hidden;
+    max-height: 0; /* Изначально скрыт */
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    transition: border 1s ease-out, max-height 1s ease-out;
+}
+
+.collapsible.open .collapsible-content {
+    max-height: 300px; 
+    border: 1px solid grey;
+}
+
+
+/* 2 задача Callback Chat */
+.form-container {
+    width: 400px;
+    box-shadow:  0 5px 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    margin-top: 50 px;
+    position: fixed;
+    right: 50px;
+    bottom: 100px;
+    padding: 15px;
+
+    opacity: 0; /* по умолчанию форма прозрачная */
+    visibility: hidden; /* по умолчанию форма не видима */
+    /* при закрытии сначала анимируется opacity, и через 100мс меняется свойство visibility */
+    transition: opacity 100ms linear, visibility 0ms linear 100ms;
+}
+
+.form-chat {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#textarea-chat {
+    height: 150px;
+    border-radius: 10px;
+    border-color: rgb(155, 149, 149);
+    margin-bottom: 15px;
+}
+
+.button-chat {
+    height: 40px;
+    border-radius: 10px;
+    border-color: rgb(155, 149, 149);
+    margin-bottom: 15px;
+}
+
+/* крестик закрытия */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* красный кружочек */
+.open-close-chat {
+    width: 70px;
+    height: 70px;
+    background-color: red;
+    border-radius: 50%;
+    position: fixed;
+    right: 50px;
+    bottom: 100px;
+    transition: opacity 100ms linear;
+}
+
+.open-close-chat:hover {
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    transition: width 100ms linear, height 100ms linear;
+}
+
+.form-container.open {
+    opacity: 1;
+    visibility: visible;
+    /* при открытии моментально меняется свойство visibility, и анимируется opacity */
+    transition: opacity 100ms linear, visibility 0ms linear 0ms;
+}
+
+.open-close-chat.close {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* 3 задача Liker */
+.liker {
+    background-color: rgb(255, 56, 56);
+    width: 170px;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    position: relative; 
+    margin: 400px 0 0 200px;
+}
+
+.liker:hover {
+    cursor: pointer;
+}
+
+.heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://github.com/netology-code/ahj-homeworks/raw/AHJ-50/anim/pic/heart.png'); /* Или замените на ваше изображение */
+    background-size: cover;
+    animation: heartAnimation 500ms ease-out forwards;
+    opacity: 1;
+}
+
+@keyframes heartAnimation {
+    /* Элемент начинается с начальной позиции, т.е. в левом верхнем углу (по горизонтали и вертикали) */
+    0% { transform: translate(0, 0); opacity: 1; } 
+    /* Перемещается на 50px вверх по оси Y, но по оси X смещается на значение, хранящееся в переменной --offset1 */
+    25% { transform: translate(var(--offset1, 0px), -50px); } 
+    /* Перемещается на 100px вверх по оси Y, с отклонением по оси X, задаваемым переменной --offset2 */
+    50% { transform: translate(var(--offset2, 0px), -100px); } 
+    /* Перемещается на 150px вверх по оси Y, с отклонением по оси X, заданным переменной --offset3 */
+    75% { transform: translate(var(--offset3, 0px), -150px); } 
+    /* Перемещается на 200px вверх по оси Y и становится полностью прозрачным в конце анимации */
+    100% { transform: translate(0, -200px); opacity: 0; } 
+}
